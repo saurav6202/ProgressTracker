@@ -10,7 +10,7 @@ module.exports = async function (req, res, next) {
     if (!accessToken) {
         // Try refresh token
         const refreshToken = req.cookies.refreshToken;
-        if (!refreshToken) return res.redirect("/user/login");
+        if (!refreshToken) return res.redirect("/user/signup");
 
         try {
             const decoded = decodeUserToken(refreshToken);
@@ -40,3 +40,4 @@ module.exports = async function (req, res, next) {
         }
     }
 }
+
