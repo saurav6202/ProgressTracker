@@ -28,5 +28,4 @@ Built with **Node.js, Express.js, MongoDB, and EJS**.
 
 ---
 
-## 📂 Project Structure
 
