@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
+    <link rel="icon" type="image/png" href="/images/logo.png">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+
+<body>
+    <!-- Sidebar Navigation -->
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="images/logo.png" alt="logo" class="logo">
+            <span>Progress Tracker</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item active homeNavBtn">
+                <a href="#" class="nav-link navigate-link">
+                    <i>🏠</i>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li class="nav-item goalNavBtn">
+                <a href="#" class="nav-link navigate-link">
+                    <i>🎯</i>
+                    <span>Goals</span>
+                </a>
+            </li>
+            <li class="nav-item journalNavBtn">
+                <a href="#" class="nav-link navigate-link">
+                    <i>📔</i>
+                    <span>Journal</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link navigate-link">
+                    <i>📊</i>
+                    <span>Analytics</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+    <!-- Menu Button -->
+    <main class="main-content" id="mainContent">
+        <%- include("partials/home") %>
+    </main>
+    <nav class="bottom-navbar">
+        <ul class="bottom-nav-menu">
+            <li class="navigate-item homeNavBtn">
+                <a href="#" class="bottom-nav-link navigate-link">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li class="navigate-item goalNavBtn">
+                <a href="#" class="bottom-nav-link navigate-link">
+                    <i class="fas fa-bullseye"></i>
+                    <span>Goals</span>
+                </a>
+            </li>
+            <li class="navigate-item journalNavBtn">
+                <a href="#" class="bottom-nav-link navigate-link">
+                    <i class="fas fa-book"></i>
+                    <span>Journal</span>
+                </a>
+            </li>
+            <li class="navigate-item">
+                <a href="#" class="bottom-nav-link navigate-link">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Analytics</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <script src="/js/chart.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+
+</html>

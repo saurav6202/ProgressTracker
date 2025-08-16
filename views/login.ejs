@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Progress Tracker</title>
+    <link rel="stylesheet" href="/css/form.css">
+</head>
+
+<body>
+
+    <div class="signup-container">
+        <h2 class="logo">Progress Tracker</h2>
+        <span class="subText">Login to see your profile</span>
+        <form action="/user/login" method="POST">
+
+            <div class="form-group">
+                <label for="usernameemail">Username or email</label>
+                <input type="text" id="usernameemail" name="usernameemail" required />
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required />
+            </div>
+
+            <button type="submit">Login</button>
+
+            <div class="form-footer">
+                Already have an account? <a href="/user/signup">Sign up</a>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>

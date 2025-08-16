@@ -1,0 +1,305 @@
+<style>
+    .optional-task-section {
+        margin-top: 20px;
+        padding: 15px;
+        background: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    .optional-task-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .plus-btn {
+        height: 2.5rem;
+        width: 2.5rem;
+        font-size: 1.5rem;
+        border-radius: 50%;
+    }
+
+    #optionalTaskForm {
+        display: flex;
+        gap: 10px;
+        margin: 10px 0;
+        align-items: center;
+    }
+
+    #optionalTaskForm input {
+        flex: 1;
+        padding: 0.6rem 1rem;
+        border: 1px solid var(--gray);
+        border-radius: 6px;
+        font-size: 1rem;
+        transition: var(--transition);
+    }
+
+    #optionalTaskForm input:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.2);
+        outline: none;
+    }
+
+    #optionalTaskForm button {
+        padding: 0.6rem 1.2rem;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .task-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-right: 10px;
+    }
+
+    .delete-optional {
+        background: none;
+        border: none;
+        font-size: 1rem;
+        color: #e74c3c;
+        cursor: pointer;
+        margin-left: 10px;
+    }
+
+    .delete-optional:hover {
+        color: #c0392b;
+    }
+
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+    }
+
+    .modal.hidden {
+        display: none;
+    }
+
+    .modal-content {
+        background: white;
+        padding: 30px 20px;
+        border-radius: 12px;
+        text-align: center;
+        width: 90%;
+        max-width: 400px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    #congratsModal h2 {
+        color: #00b894;
+        margin-bottom: 10px;
+    }
+
+    .btnRow {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 100%;
+    }
+
+    .btn {
+        margin-top: 1rem;
+        background-color: var(--primary);
+        color: var(--white);
+        border: none;
+        padding: 0.6rem 1.2rem;
+        border-radius: 8px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: var(--transition);
+        font-size: 1rem;
+    }
+
+    .btnRow .btn:last-child {
+        background-color: red;
+    }
+
+    .addDateBtn:hover {
+        background-color: #5649c0;
+    }
+
+    .streak {
+        display: inline-block;
+        background: linear-gradient(to right, #ff9a9e, #fad0c4);
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        color: #fff;
+        margin-left: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transition: transform 0.2s ease, box-shadow 0.3s ease;
+        user-select: none;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .streak:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Base style */
+    .goal-streak {
+        font-weight: bold;
+        padding: 4px 8px;
+        border-radius: 6px;
+        font-size: 14px;
+        display: inline-block;
+    }
+
+    /* Streak Levels */
+    .newbie-streak {
+        background-color: #dfe6e9;
+        color: #636e72;
+    }
+
+    .starter-streak {
+        background-color: #81ecec;
+        color: #006064;
+    }
+
+    .rare-streak {
+        background-color: #74b9ff;
+        color: #0c2461;
+    }
+
+    .epic-streak {
+        background-color: #a29bfe;
+        color: #2d3436;
+    }
+
+    .legendary-streak {
+        background-color: #fd79a8;
+        color: #2c3e50;
+    }
+
+    .master-streak {
+        background-color: #fab1a0;
+        color: #4e342e;
+    }
+
+    .divine-streak {
+        background: linear-gradient(to right, #f9ca24, #f0932b, #e17055);
+        color: #2d3436;
+        border: 2px solid #d35400;
+        animation: glow 1.5s infinite alternate;
+    }
+
+    /* Divine glow animation */
+    @keyframes glow {
+        from {
+            box-shadow: 0 0 8px #f9ca24;
+        }
+
+        to {
+            box-shadow: 0 0 18px #e17055;
+        }
+    }
+
+    .modal-content span {
+        color: green;
+        font-weight: 500;
+        border-top: 1px solid black;
+    }
+</style>
+
+<div class="header">
+    <div class="date-display" id="dateDisplay"></div>
+</div>
+
+<div class="dashboard">
+    <div class="top-con">
+        <!-- Tasks Card -->
+        <div class="card fade-in task-checkbox-card">
+            <div class="card-header">
+                <h2 class="card-title">Today's Tasks</h2>
+            </div>
+            <div>
+                <h3 style="margin-bottom: 1rem; color: var(--primary); font-size: 1rem;">Things I Have to Do</h3>
+                <ul class="task-list" id="requiredTasks"></ul>
+                <button class="go-to-goal-page-btn style-btn redirectBtns">Start by making goal 🎯</button>
+                <h3 style="margin: 1.5rem 0 1rem; color: var(--primary); font-size: 1rem;">Things I Don't Have to Do
+                </h3>
+
+                <div class="optional-task-section">
+                    <div class="optional-task-header">
+                        <h3>Wrong Tasks</h3>
+                        <button id="toggleOptionalInput" class="plus-btn style-btn">+</button>
+                    </div>
+
+                    <div class="formCon hidden">
+                        <form id="optionalTaskForm">
+                            <input type="text" id="optionalTaskInput" placeholder="Add a bad habit..." required>
+                            <button type="submit" id="addOptionalTaskBtn" class="style-btn">Add</button>
+                        </form>
+                    </div>
+
+                    <ul class="task-list" id="optionalTasks">
+                        <!-- Tasks from MongoDB will appear here -->
+                    </ul>
+                </div>
+
+
+                <ul class="task-list" id="optionalTasks"></ul>
+            </div>
+        </div>
+        <div class="right-box">
+            <!-- Mood & Journal Card -->
+            <div class="card fade-in delay-1">
+                <div class="card-header">
+                    <h2 class="card-title">How are you feeling today?</h2>
+                </div>
+                <div class="mood-selector">
+                    <button class="mood-btn" data-mood="sad">😞</button>
+                    <button class="mood-btn" data-mood="neutral">😐</button>
+                    <button class="mood-btn" data-mood="happy">😊</button>
+                    <button class="mood-btn" data-mood="excited">😁</button>
+                    <button class="mood-btn" data-mood="awesome">🤩</button>
+                </div>
+            </div>
+            <!-- Progress Card -->
+            <div class="card fade-in delay-3 chart-card">
+                <div class="card-header">
+                    <h2 class="card-title">Today's Progress</h2>
+                </div>
+                <div class="chart-container">
+                    <canvas id="progressChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Journal Card -->
+    <div class="card fade-in delay-2 journal-card">
+        <div class="card-header">
+            <h2 class="card-title">Daily Journal</h2>
+        </div>
+        <textarea class="journal-input" placeholder="How was your day? What are you grateful for?"></textarea>
+    </div>
+</div>
+
+<div id="congratsModal" class="modal hidden">
+    <div class="modal-content">
+        <h2>🎉 Goal Completed!</h2>
+        <p id="congratsMessage">You did it!</p>
+        <span calss="morePara">Add more days</span>
+        <div class="btnRow">
+            <button class="addDateBtn btn">+10</button>
+            <button class="addDateBtn btn">+50</button>
+            <button class="addDateBtn btn">+100</button>
+            <button id="deleteGoalBtn" class="btn">Dlelete</button>
+        </div>
+    </div>
+</div>

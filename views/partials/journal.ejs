@@ -1,0 +1,94 @@
+<style>
+    #journalEntry {
+        width: 100%;
+        padding: 12px;
+        font-size: 15px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        resize: vertical;
+        margin-bottom: 10px;
+        background: var(--input-bg);
+        color: var(--text);
+    }
+
+    #journalForm .save-btn {
+        padding: 8px 18px;
+        background: var(--primary);
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .journal-item {
+        padding: 0.75rem 1rem;
+        background-color: var(--white);
+        border: 1px solid var(--gray);
+        border-radius: 6px;
+        margin-bottom: 0.5rem;
+        transition: var(--transition);
+        box-shadow: var(--shadow);
+    }
+
+    .journal-item:hover {
+        transform: translateY(-3px);
+    }
+
+    .journal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 6px;
+    }
+
+    .journal-date {
+        font-weight: bold;
+        font-size: 1.3rem;
+        color: #555;
+    }
+
+    .journal-text {
+        font-size: 15px;
+        white-space: pre-wrap;
+        line-height: 1.5;
+        color: var(--text);
+    }
+
+    .journal-actions button {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: 18px;
+        margin-left: 6px;
+    }
+
+    body.modal-open {
+        overflow: hidden;
+        pointer-events: none;
+    }
+
+    body.modal-open .modal {
+        pointer-events: auto;
+    }
+</style>
+<div class="card fade-in journalBody">
+    <div class="card-header">
+        <h2 class="card-title">Yoru Journals</h2>
+    </div>
+    <button class="redirectBtns go-to-jouranl-page-btn style-btn" id="journalRedirectBtn">Start writing journals</button>
+
+    <div class="fade-in" id="journalList"></div>
+</div>
+
+<div id="editJournalModal" class="modal hidden">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h3>Edit Goal</h3>
+        <form id="editJournalForm">
+            <input type="hidden" id="editJournalId" />
+            <input type="text" id="editJournalInput" placeholder="Edit journal..." required />
+            <button type="submit" class="save-btn">Update</button>
+        </form>
+    </div>
+</div>
