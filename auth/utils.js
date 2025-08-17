@@ -20,14 +20,14 @@ function setAuthCookies(res, user) {
     res.cookie("accessToken", accessToken, {
         httpOnly: true,
         secure: true,
-        sameSite: "strict",
+        sameSite: "none",
         maxAge: 15 * 60 * 1000 // 15 min
     });
 
     res.cookie("refreshToken", refreshToken, {
         httpOnly: true,
         secure: true,
-        sameSite: "strict",
+        sameSite: "none",
         maxAge: 365 * 24 * 60 * 60 * 1000 // 1 year
     });
 }
@@ -37,4 +37,5 @@ module.exports = {
     createRefreshToken,
     decodeUserToken,
     setAuthCookies
+
 };
