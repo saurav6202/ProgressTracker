@@ -1072,7 +1072,7 @@ async function loadInitialProgress(section) {
 
         if (section === "home") {
             const goalBtn = document.querySelector(".go-to-goal-page-btn");
-            goalBtn.style.display = "block"
+            goalBtn.style.display = "block";
             goalBtn.addEventListener("click", async (e) => {
                 e.preventDefault();
                 loadSection("goals");
@@ -1092,12 +1092,11 @@ async function loadInitialProgress(section) {
                 document.querySelector(".journal-input").focus();
             });
         }
-
-
-
-
     } else {
-        // render normally
-        // loadSection("home");
+        if (section === "home") {
+            const goalBtn = document.querySelector(".go-to-goal-page-btn");
+            goalBtn.style.display = "none";
+        }
     }
+
 }
